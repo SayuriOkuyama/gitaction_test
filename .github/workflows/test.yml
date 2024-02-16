@@ -2,32 +2,33 @@ name: Test
 
 on:
   push:
-    branches: [master]
+    branches: [ master ]
   pull_request:
-    branches: [master]
+    branches: [ master ]
 
 jobs:
+  # 環境構築
   build:
+    # ubuntu 使う
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
+      # ファイルにアクセスできるようにする
+    - name: Checkout
+			uses: actions/checkout@v4.1.1
 
-      - name: Set up PHP
-        uses: shivammathur/setup-php@v2
-        with:
-          php-version: "8.3.2"
-          extensions: mbstring, xml
-          coverage: xdebug
+		- name: Setup PHP Action
+      uses: shivammathur/setup-php@2.29.0
 
-      - name: Validate composer.json and composer.lock
-        run: composer validate
+    - name: Validate composer.json and composer.lock
+      # composer.json の文法や構文に問題がないか確認する
+      run: composer validate
 
-      - name: Install dependencies
-        run: composer install --prefer-dist --no-progress --no-suggest
+    - name: Install PHP Dependencies with Composer
+      uses: ramsey/composer-install@2.2.0
 
-      - name: Run tests with PHPUnit
-        run: vendor/bin/phpunit tests --coverage-text
+    - name: Run tests with PHPUnit
+      run: composer phpunit
 
-      - name: Check coding standards with PHP_CodeSniffer
-        run: vendor/bin/phpcs --standard=PSR12 src tests
+    - name: Check coding standards with PHP_CodeSniffer
+      run: composer phpcs
