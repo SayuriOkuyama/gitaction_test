@@ -18,7 +18,10 @@
   },
   "scripts": {
     "phpcs": [
-      "./vendor/bin/phpcs --standard=phpcs.xml"
+      "./vendor/bin/phpcs --standard=phpcs.xml src tests"
+    ],
+    "phpunit": [
+      "./vendor/bin/phpunit tests"
     ]
   }
 }
