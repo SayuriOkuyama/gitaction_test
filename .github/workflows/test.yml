@@ -1,12 +1,7 @@
-name: test
-on:
-  push:
-    branches: [main]
-  pull_request:
-    branches: [main]
+name: learn-github-actions
+on: [push]
 jobs:
-  test:
+  check-bats-version:
     runs-on: ubuntu-latest
     steps:
-      - name: Run tests with PHPUnit
-        run: echo "Hello World"
+      - run: echo "Hello World"
