@@ -1,18 +1,37 @@
-name: learn-github-actions
+name: Test
+
 on:
   push:
-    branches: [master]
+    branches: [ main ]
   pull_request:
-    branches: [master]
+    branches: [ main ]
+
 jobs:
-  test:
+  # 環境構築
+  build:
+    # ubuntu 使う
     runs-on: ubuntu-latest
+
     steps:
-      - name: Install dependencies
-        run: composer install --prefer-dist
+      # ファイルにアクセスできるようにする
+    - name: Checkout
+      uses: actions/checkout@v4
 
-      - name: Run tests with PHPUnit
-        run: vendor/bin/phpunit tests
+		- name: Setup PHP Action
+      uses: shivammathur/setup-php@2.29.0
+      with:
+        php-version: '8.3.2'
+        extensions: mbstring, xml
 
-      - name: Run tests with PHPCodeSniffer
-        run: vendor/bin/phpcs --standard=phpcs.xml src tests
+    - name: Validate composer.json and composer.lock
+      # composer.json の文法や構文に問題がないか確認する
+      run: composer validate
+
+    - name: Install PHP Dependencies with Composer
+      uses: ramsey/composer-install@2.2.0
+
+    - name: Run tests with PHPUnit
+      run: composer phpunit
+
+    - name: Check coding standards with PHP_CodeSniffer
+      run: composer phpcs
