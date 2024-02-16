@@ -16,13 +16,13 @@ jobs:
 
       - uses: shivammathur/setup-php@2.29.0
 
-    - name: Validate composer.json and composer.lock
-    run: composer validate
+      - name: Validate composer.json and composer.lock
+      run: composer validate
 
-    - uses: ramsey/composer-install@2.2.0
+      - uses: ramsey/composer-install@2.2.0
 
-    - name: Run tests with PHPUnit
-      run: composer phpunit
+      - name: Run tests with PHPUnit
+        run: composer phpunit
 
-    - name: Check coding standards with PHP_CodeSniffer
-      run: composer phpcs
+      - name: Check coding standards with PHP_CodeSniffer
+        run: composer phpcs
