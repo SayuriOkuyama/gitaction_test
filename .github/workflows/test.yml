@@ -8,6 +8,9 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
+      - name: Install dependencies
+        run: composer install --prefer-dist
+
       - name: Run tests with PHPUnit
         run: vendor/bin/phpunit tests
 
