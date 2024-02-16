@@ -1,7 +1,15 @@
-name: learn-github-actions
-on: [push]
+name: test
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
 jobs:
-  check-bats-version:
+  test:
     runs-on: ubuntu-latest
     steps:
-      - run: echo "Hello World"
+      - name: Run tests with PHPUnit
+        run: composer phpunit
+    steps:
+      - name: Run tests with PHPCodeSniffer
+        run: composer phpcs
