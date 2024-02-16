@@ -10,6 +10,6 @@ jobs:
     steps:
       - name: Run tests with PHPUnit
         run: composer phpunit
-    steps:
+
       - name: Run tests with PHPCodeSniffer
         run: composer phpcs
