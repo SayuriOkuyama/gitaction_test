@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Run tests with PHPUnit
-        run: composer phpunit
+        run: ./vendor/bin/phpunit tests
 
       - name: Run tests with PHPCodeSniffer
-        run: composer phpcs
+        run: ./vendor/bin/phpcs --standard=phpcs.xml src tests
