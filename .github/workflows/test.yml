@@ -13,18 +13,17 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v3
     # - name: Checkout
-			# uses: actions/checkout@v4.1.1
+			uses: actions/checkout@v4.1.1
 
-		- name: Setup PHP Action
+		# - name: Setup PHP Action
       uses: shivammathur/setup-php@2.29.0
 
     - name: Validate composer.json and composer.lock
       # composer.json の文法や構文に問題がないか確認する
       run: composer validate
 
-    - name: Install PHP Dependencies with Composer
+    # - name: Install PHP Dependencies with Composer
       uses: ramsey/composer-install@2.2.0
 
     - name: Run tests with PHPUnit
