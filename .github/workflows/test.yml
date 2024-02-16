@@ -1,6 +1,5 @@
 name: test
 
-# イベント
 on:
   push:
     branches: [main]
