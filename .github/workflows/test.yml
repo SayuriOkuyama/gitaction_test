@@ -4,12 +4,13 @@ on:
     branches: [main]
   pull_request:
     branches: [main]
+
 jobs:
   test:
     runs-on: ubuntu-latest
     steps:
       - name: Run tests with PHPUnit
         run: composer phpunit
-    steps:
+
       - name: Run tests with PHPCodeSniffer
         run: composer phpcs
